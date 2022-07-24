@@ -47,7 +47,6 @@ func UpdateEmployee(w http.ResponseWriter, r *http.Request) {
 func DeleteEmployee(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var emp Employee
-	DB.First(&emp, mux.Vars(r)["eid"])
-	DB.Delete(emp)
-	json.NewEncoder(w).Encode(emp)
+	DB.Delete(&emp, mux.Vars(r)["eid"])
+	json.NewEncoder(w).Encode("Employee is deleted")
 }
